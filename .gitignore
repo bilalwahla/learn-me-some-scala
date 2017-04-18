@@ -3,6 +3,7 @@
 *.log
 
 ### Build files
+/project/
 /target/
 
 ### OS generated files
