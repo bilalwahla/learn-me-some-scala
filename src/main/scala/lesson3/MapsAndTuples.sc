@@ -36,3 +36,4 @@ tuple._2
 tuple._1 // unlike arrays tuple position starts at 1 and not 0
 
 val (_, second, third) = tuple
+second
