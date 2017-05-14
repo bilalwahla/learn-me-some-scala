@@ -38,9 +38,39 @@ tuple._1 // unlike arrays tuple position starts at 1 and not 0
 val (_, second, third) = tuple
 second
 
+import org.scalatest._
 import org.scalatest.Matchers._
 
 // The swap method can be used to swap the elements of a Tuple
 val t = ("apple", 3).swap
 t._1 should be(3)
 t._2 should be("apple")
+
+/**
+  * If a nonexistent map key is requested using myMap(missingKey), a NoSuchElementException will be thrown. Default
+  * values may be provided using either getOrElse or withDefaultValue for the entire map
+  */
+val myMap =
+  Map("MI" → "Michigan", "OH" → "Ohio", "WI" → "Wisconsin", "IA" → "Iowa")
+intercept[NoSuchElementException] { myMap("TX") }
+
+myMap.getOrElse("TX", "missing data")
+
+val myMap2 = Map("MI" → "Michigan", "OH" → "Ohio", "WI" → "Wisconsin", "IA" → "Iowa") withDefaultValue "missing data"
+myMap2("TX")
+
+// Removing elements from map
+myMap - "MI" contains "MI" should be(false)
+myMap -- List("MI", "OH")
+myMap - ("MI", "OH")
+// Removing non-existent
+val aNewMap = myMap - "MN"
+aNewMap.equals(myMap) should be(true)
+
+// Map equivalency is independent of order
+val myMap1 =
+  Map("MI" → "Michigan", "OH" → "Ohio", "WI" → "Wisconsin", "IA" → "Iowa")
+val myMap3 =
+  Map("WI" → "Wisconsin", "MI" → "Michigan", "IA" → "Iowa", "OH" → "Ohio")
+
+myMap1.equals(myMap3) should be(true)
