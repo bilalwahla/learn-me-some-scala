@@ -26,3 +26,18 @@ greeting
 
 val x: BigInt = 123456789
 x * x * x * x
+
+import org.scalatest.Matchers._
+
+val c = '\u0061' //unicode for a
+val d = '\141' //octal for a
+val e = '\"'
+val f = '\\'
+
+"%c".format(c) should be("a")
+"%c".format(d) should be("a")
+"%c".format(e) should be("\"")
+"%c".format(f) should be("\\")
+
+val j = 190
+"%d bottles of beer on the wall" format j - 100 should be ("90 bottles of beer on the wall")
