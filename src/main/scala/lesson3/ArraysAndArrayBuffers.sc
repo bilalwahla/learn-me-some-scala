@@ -34,3 +34,29 @@ d.mkString("|")
 d.mkString("[", ",", "]")
 b.toString() // toString on Scala's ArrayBuffer does not work like Java
 b.mkString("[", ",", "]")
+
+import org.scalatest.Matchers._
+
+// Lists can be reduced with a mathematical operation
+val a1 = List(1, 3, 5, 7)
+a1.reduceLeft(_ + _) // sum
+a1.reduceLeft(_ * _) // product
+
+// foldLeft is like reduce, but with an explicit starting value
+val a3 = List(1, 3, 5, 7)
+// NOTE: foldLeft uses a form called currying that we will explore later
+a3.foldLeft(0)(_ + _) should equal(16)
+a3.foldLeft(10)(_ + _) should equal(26)
+a3.foldLeft(1)(_ * _) should equal(105)
+a3.foldLeft(0)(_ * _) should equal(0)
+
+// Lists reuse their tails
+val d4 = Nil
+val c4 = 3 :: d4
+val b4 = 2 :: c4
+val a4 = 1 :: b4
+
+a4 should be(List(1, 2, 3))
+a4.tail should be(List(2, 3))
+b4.tail should be(List(3))
+c4.tail should be(List())
