@@ -38,4 +38,9 @@ tuple._1 // unlike arrays tuple position starts at 1 and not 0
 val (_, second, third) = tuple
 second
 
-// Some more exercises /////////////////////////////////////////////////////////////////////////////////////////////////
+import org.scalatest.Matchers._
+
+// The swap method can be used to swap the elements of a Tuple
+val t = ("apple", 3).swap
+t._1 should be(3)
+t._2 should be("apple")
