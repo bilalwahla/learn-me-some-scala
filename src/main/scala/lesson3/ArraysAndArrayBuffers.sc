@@ -60,3 +60,20 @@ a4 should be(List(1, 2, 3))
 a4.tail should be(List(2, 3))
 b4.tail should be(List(3))
 c4.tail should be(List())
+
+def sum(xs: List[Int]): Int =
+  if (xs.isEmpty) throw new IllegalArgumentException("sum of empty list")
+  else if (xs.tail.isEmpty) xs.head
+  else xs.head + sum(xs.tail)
+
+val xs = List(1, 2, 3, 4)
+sum(xs)
+
+def max(xs: List[Int]): Int =
+  if (xs.isEmpty) throw new NoSuchElementException("max of empty list")
+  else if (xs.tail.isEmpty) xs.head
+  else if (xs.head > xs.tail.head) max(xs.head :: xs.tail.tail)
+  else max(xs.tail)
+max(xs)
+
+List(1, 2, 3, 4).max

@@ -65,3 +65,11 @@ def checkout(fruits: List[String]): Double = fruits match {
   case f :: fs if f == "Orange" => 0.25 + checkout(fs)
 }
 checkout(List("Apple", "Orange", "Orange"))
+
+def sum(xs: List[Int]): Int = xs match {
+  case List() => 0
+  case y :: ys => y + sum(ys)
+}
+
+val xs = List(1, 2, 3, 4)
+sum(xs)
